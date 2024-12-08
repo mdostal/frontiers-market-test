@@ -78,6 +78,11 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 NEXT_PUBLIC_FIREBASE_DATABASE_URL=your_database_url
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+GEMINI_SECRET_KEY=your_gemini_secret_key
+ANTHROPIC_API_KEY= your_anthropic_api_key
+FIREBASE_ADMIN_JSON= your_firebase_admin_json
+
 ```
 
 4. Start the development server:
@@ -167,21 +172,21 @@ TODO:
  - [x] link to the site
  - [x] link to github
  - [] link to firebase project
- - [] link to clerk project
- - [] comments on time spent with breakdown:
-  - [] cloning the site
-  - [] css and design
-  - [] chatbot
-  - [] templating
-  - [] setup of accounts and binding
-  - [] setup of overall project
-  - [] deployment and hosting
-- [] comments on what was left out
- - [] pixel perfect design
- - [] responsive across all sizes
- - [] mobile friendly
- - [] added accessibility and a couple small animations
-- [] speed report
+ - [o] link to clerk project -- this cannot be done on the free tier for this one
+ - [x] comments on time spent with breakdown:
+  - [x] cloning the site
+  - [x] css and design
+  - [x] chatbot
+  - [x] templating
+  - [x] setup of accounts and binding
+  - [x] setup of overall project
+  - [x] deployment and hosting
+- [x] comments on what was left out
+ - [x] pixel perfect design
+ - [x] responsive across all sizes
+ - [x] mobile friendly
+ - [x] added accessibility and a couple small animations
+- [x] speed report
 - [] add a link to the speed page
 - [x] look at the overall site and see if top level css aligns better
 - [x] fix any other css issues -- mostly, a few things need tweaking
