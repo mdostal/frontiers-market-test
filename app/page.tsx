@@ -4,7 +4,7 @@ import { SearchSection } from '@/components/home/search-section'
 import { InfoGrid } from '@/components/home/info-grid'
 import { AboutSection } from '@/components/home/about-section'
 import { AppPromo } from '@/components/home/app-promo'
-
+import Image from 'next/image'
 export default function Home() {
   return (
     <>
@@ -13,6 +13,14 @@ export default function Home() {
       <SearchSection />
       <InfoGrid />
       <AboutSection />
+
+      <Image alt="Logo company" 
+      loading="lazy" 
+      width="104" 
+      height="56" 
+      decoding="async" data-nimg="1" className="self-center flex justify-center snap-center" 
+      src="/images/logo.svg" 
+      />
       <AppPromo />
     </>
   )

@@ -6,7 +6,7 @@ const nextConfig = {
   images: { unoptimized: false },
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost','*.localhost','mdostal.com', '*.mdostal.com'],
+      allowedOrigins: ['localhost','*.localhost'],
     },
   },
 };
