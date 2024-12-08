@@ -23,6 +23,7 @@ export async function POST(request: Request) {
         const modelResponse = await model.getResponse(prompt);
 
         database.addMessage(modelResponse, true);
+        
       return NextResponse.json({ message: 'Post created successfully', result: modelResponse }, { status: 201 });
     } catch (error) {
       return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });

@@ -4,7 +4,8 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { useUser } from '@clerk/nextjs'
 import { ref, onValue, push, serverTimestamp } from 'firebase/database'
 import { database } from '@/lib/firebase'
-import {ChatWidget} from './chat-widget'
+import { getUserId } from '@/lib/chat-utils'
+import { ChatWidget } from './chat-widget'
 
 type Message = {
   id: string
@@ -27,11 +28,10 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const { user } = useUser()
+  const userId = getUserId(user)
 
   useEffect(() => {
-    if (!user) return
-
-    const messagesRef = ref(database, `chats/${user.id}/messages`)
+    const messagesRef = ref(database, `chats/${userId}/messages`)
     const unsubscribe = onValue(messagesRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -44,19 +44,18 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     })
 
     return () => unsubscribe()
-  }, [user, messages])
+  }, [userId])
 
   const sendMessage = async (text: string) => {
-    if (!user) return
-
-    const aiResponse = await fetch('/api/prompt', {
+    // we could extract this further, but it is just used in one place
+    await fetch('/api/prompt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         prompt: text,
-        user: user.id
+        user: userId
       }),
     })
   }
