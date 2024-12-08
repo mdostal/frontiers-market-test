@@ -23,7 +23,7 @@ const config: Config = {
         borderGreen:{
           DEFAULT: 'hsl(137, 100%, 26%)'
         },
-        livestockPocket: {
+        'livestock-pocket': {
           DEFAULT: 'hsl(30, 20%, 94%)'
         },
         primary: {
