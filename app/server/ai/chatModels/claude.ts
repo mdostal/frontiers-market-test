@@ -35,7 +35,7 @@ export class ClaudeModel implements IAIModel {
             });
 
         //TODO: decide if we want to save off the prompt metadata separately
-        const fullText = promptResult.content.map(c => c?.text).join("")
+        const fullText = promptResult.content.map(c => ('text' in c ? c.text : '')).join("");
         return fullText;
     }
 }
