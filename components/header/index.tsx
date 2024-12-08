@@ -3,25 +3,26 @@
 import Link from 'next/link'
 import { NotificationBanner } from './notification-banner'
 import { NavLinks } from './nav-links'
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import Image from 'next/image'
 
 export function Header() {
   return (
     <>
       <NotificationBanner />
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.svg" alt="Frontiers Market" className="h-8" />
-          </Link>
+      <header className="bg-[#FBFAFA] sticky top-0 z-10">
+        <div className="container py-2 pt-4 sm:py-4  flex flex-row items-center md:items-end justify-between gap-16">
+          <div className="max-md:hidden">
+            <Link href="/" className='flex items-center p-2'>
+              <Image 
+                width={100} 
+                height={32} 
+                src="/images/logo.svg" 
+                alt="Frontiers Market" 
+                className="" />
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <NavLinks />
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
           </div>
         </div>
       </header>
