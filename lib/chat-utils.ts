@@ -1,4 +1,4 @@
-import { User } from '@clerk/nextjs/server'
+import { useAuth } from '@clerk/nextjs'
 
 export function getGuestUser(): User {
   return {
@@ -27,6 +27,11 @@ export function getGuestUser(): User {
   }
 }
 
-export function getUserId(user: User | null): string {
-  return user?.id || 'guest-user'
+export function getUserId(): string {
+    const { isLoaded, userId, sessionId, getToken } = useAuth()
+  // In case the user signs out while on the page.
+  if (!isLoaded || !userId) {
+    return sessionId || 'guest-user'
+  }
+  return userId
 }

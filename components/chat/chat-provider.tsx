@@ -1,7 +1,6 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect } from 'react'
-import { useUser } from '@clerk/nextjs'
 import { ref, onValue, push, serverTimestamp } from 'firebase/database'
 import { database } from '@/lib/firebase'
 import { getUserId } from '@/lib/chat-utils'
@@ -25,10 +24,10 @@ type ChatContextType = {
 const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
+
   const [messages, setMessages] = useState<Message[]>([])
   const [isOpen, setIsOpen] = useState(false)
-  const { user } = useUser()
-  const userId = getUserId(user)
+  const userId = getUserId()
 
   useEffect(() => {
     const messagesRef = ref(database, `chats/${userId}/messages`)
@@ -65,7 +64,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   return (
     <ChatContext.Provider value={{ messages, sendMessage, isOpen, toggleChat }}>
       {children}
-      <ChatWidget />
+      <ChatWidget isOpen={isOpen} toggleChat={toggleChat} />
     </ChatContext.Provider>
   )
 }

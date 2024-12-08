@@ -2,14 +2,12 @@
 
 import { useEffect, useRef } from 'react'
 import { useChat } from '@/components/chat/chat-provider'
-import { useUser } from '@clerk/nextjs'
 import { getUserId } from '@/lib/chat-utils'
 
 export function ChatMessages() {
   const { messages } = useChat()
-  const { user } = useUser()
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const userId = getUserId(user)
+  const userId = getUserId()
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })

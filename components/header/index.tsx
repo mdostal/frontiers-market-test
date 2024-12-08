@@ -1,9 +1,9 @@
 "use client"
 
 import Link from 'next/link'
-import { UserButton } from '@clerk/nextjs'
 import { NotificationBanner } from './notification-banner'
 import { NavLinks } from './nav-links'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 export function Header() {
   return (
@@ -16,7 +16,12 @@ export function Header() {
           </Link>
           <div className="flex items-center gap-4">
             <NavLinks />
-            <UserButton afterSignOutUrl="/" />
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
         </div>
       </header>
