@@ -26,6 +26,9 @@ const config: Config = {
         'livestock-pocket': {
           DEFAULT: 'hsl(30, 20%, 94%)'
         },
+        'how-to-start': {
+          DEFAULT: 'rgb(248 246 244 / var(--tw-bg-opacity))'
+        },
         primary: {
           DEFAULT: 'hsl(220, 43%, 11%)',
           foreground: 'hsl(var(--primary-foreground))',

@@ -1,46 +1,47 @@
+import { steps } from '@/data/info-grid'
+
 export function InfoGrid() {
-  const steps = [
-    {
-      number: '1',
-      title: 'Create a free account',
-      description: 'We don\'t collect any fee for listing livestock.'
-    },
-    {
-      number: '2',
-      title: 'Get approved to sell',
-      description: 'We strive for providing the highest security.'
-    },
-    {
-      number: '3',
-      title: 'Add cattle listing',
-      description: 'We help you create a listing including breed, age, weight.'
-    },
-    {
-      number: '4',
-      title: 'Appear in our catalog',
-      description: 'Thousands of nationwide buyers searching for livestock everyday!'
-    }
-  ]
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container">
-        <h2 className="text-3xl font-bold text-center mb-2">
+    <section className="bg-how-to-start py-14 md:py-24">
+      <div className="relative container flex flex-col items-center justify-center py-4">
+        <p className="z-50 text-center text-base text-secondary font-semibold uppercase">
+          How to start
+        </p>
+        <h2 className="z-50 text-center text-2xl leading-9 md:text-3xl md:leading-12 text-primary font-archia font-semibold">
           Start selling around the country
         </h2>
-        <p className="text-center text-green-600 mb-12">HOW TO START</p>
-        
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="z-50 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-6 md:py-16">
           {steps.map((step) => (
-            <div key={step.number} className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-600 text-white text-xl font-bold mb-4">
-                {step.number}
+            <div key={step.number} className="flex flex-col gap-2 p-4 bg-tertiary md:bg-transparent">
+              <div className="flex items-center flex-row md:flex-col gap-2">
+                <span className="text-secondary text-lg md:text-4xl font-bold">
+                  {step.number}
+                </span>
+                <span className="text-primary text-base md:text-lg font-semibold">
+                  {step.title}
+                </span>
+                <p className="text-sm md:text-base md:text-center text-grey">
+                  {step.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
             </div>
           ))}
         </div>
+        <a className="z-50 text-white text-base text-center md:text-lg font-bold rounded-lg py-3 px-4 max-sm:w-full md:px-18 bg-secondary" 
+          href="https://frontiersmarket.com/register">
+          Create Account
+        </a>
+        <picture className="z-0 absolute">
+          <source srcSet="/images/us_country.webp" type="image/webp" />
+          <img
+            src="/images/us_country.webp"
+            width={"90%"}
+            // height={648}
+            alt="map"
+            className="object-contain sm:object-cover max-md:object-bottom object-top max-md:translate-y-9 md:scale-x-110"
+          />
+        </picture>
       </div>
     </section>
   )
