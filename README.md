@@ -157,15 +157,15 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 TODO:
 - [] Add rules for the database to lock it down
-- [] Add a sonner if we get an error on chat
-- [] chat merges chats, doesn't take into account the fact that a logged in user logging out should not be able to see the chat history
-- [] Clean up the last top sections for
- - [] search
- - [] info grid
- - [] hero
+- [x] Add a sonner if we get an error on chat
+- [x] chat merges chats, doesn't take into account the fact that a logged in user logging out should not be able to see the chat history
+- [x] Clean up the last top sections for
+ - [x] search
+ - [x] info grid
+ - [x] hero
 - [] send email to include:
- - [] link to the site
- - [] link to github
+ - [x] link to the site
+ - [x] link to github
  - [] link to firebase project
  - [] link to clerk project
  - [] comments on time spent with breakdown:
@@ -183,5 +183,5 @@ TODO:
  - [] added accessibility and a couple small animations
 - [] speed report
 - [] add a link to the speed page
-- look at the overall site and see if top level css aligns better
-- fix any other css issues
+- [x] look at the overall site and see if top level css aligns better
+- [x] fix any other css issues -- mostly, a few things need tweaking

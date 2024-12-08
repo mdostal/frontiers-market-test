@@ -6,6 +6,7 @@ import { database } from '@/lib/firebase'
 import { getUserId } from '@/lib/utils/auth-utils'
 import { ChatWidget } from './chat-widget'
 import { toast } from "sonner"
+import { useAuthStore } from '@/lib/store/auth-store'
 
 type Message = {
   id: string
@@ -25,6 +26,7 @@ type ChatContextType = {
 const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
+  const guestId = useAuthStore((state) => state.guestId); 
   const [messages, setMessages] = useState<Message[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const currentUserId = getUserId()
@@ -34,7 +36,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     const messagesRef = ref(database, `chats/${currentUserId}/messages`)
     
     // If user ID changed, migrate messages from previous ID
-    if (previousUserIdRef.current !== currentUserId) {
+    if (previousUserIdRef.current !== currentUserId && previousUserIdRef.current === guestId) {
       const previousMessagesRef = ref(database, `chats/${previousUserIdRef.current}/messages`)
       onValue(previousMessagesRef, (snapshot) => {
         const previousData = snapshot.val()
