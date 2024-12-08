@@ -1,9 +1,9 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect } from 'react'
-import { ref, onValue, push, serverTimestamp } from 'firebase/database'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
+import { ref, onValue, push } from 'firebase/database'
 import { database } from '@/lib/firebase'
-import { getUserId } from '@/lib/chat-utils'
+import { getUserId } from '@/lib/utils/auth-utils'
 import { ChatWidget } from './chat-widget'
 
 type Message = {
@@ -24,13 +24,27 @@ type ChatContextType = {
 const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
-
   const [messages, setMessages] = useState<Message[]>([])
   const [isOpen, setIsOpen] = useState(false)
-  const userId = getUserId()
+  const currentUserId = getUserId()
+  const previousUserIdRef = useRef<string>(currentUserId)
 
   useEffect(() => {
-    const messagesRef = ref(database, `chats/${userId}/messages`)
+    const messagesRef = ref(database, `chats/${currentUserId}/messages`)
+    
+    // If user ID changed, migrate messages from previous ID
+    if (previousUserIdRef.current !== currentUserId) {
+      const previousMessagesRef = ref(database, `chats/${previousUserIdRef.current}/messages`)
+      onValue(previousMessagesRef, (snapshot) => {
+        const previousData = snapshot.val()
+        if (previousData) {
+          Object.values(previousData).forEach((message: any) => {
+            push(messagesRef, message)
+          })
+        }
+      }, { onlyOnce: true })
+    }
+    
     const unsubscribe = onValue(messagesRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -39,14 +53,16 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
           ...message,
         }))
         setMessages(messageList.sort((a, b) => a.timestamp - b.timestamp))
+      } else {
+        setMessages([])
       }
     })
 
+    previousUserIdRef.current = currentUserId
     return () => unsubscribe()
-  }, [userId])
+  }, [currentUserId])
 
   const sendMessage = async (text: string) => {
-    // we could extract this further, but it is just used in one place
     await fetch('/api/prompt', {
       method: 'POST',
       headers: {
@@ -54,7 +70,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       },
       body: JSON.stringify({
         prompt: text,
-        user: userId
+        user: currentUserId
       }),
     })
   }
@@ -64,7 +80,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   return (
     <ChatContext.Provider value={{ messages, sendMessage, isOpen, toggleChat }}>
       {children}
-      <ChatWidget isOpen={isOpen} toggleChat={toggleChat} />
+      <ChatWidget />
     </ChatContext.Provider>
   )
 }

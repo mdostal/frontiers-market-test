@@ -2,8 +2,6 @@ import { IAIModel } from "../IChatModel";
 const { claudeSettings } = require(`@/app/server/ai/settings/claude`);
 
 import Anthropic from "@anthropic-ai/sdk";
-import { ClaudePrompt } from "@/app/server/ai/types/ClaudePrompt";
-
 // setup the AI model to be used across the functions
 const anthropic = new Anthropic();
 
