@@ -32,20 +32,28 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const currentUserId = getUserId()
   const previousUserIdRef = useRef<string>(currentUserId)
 
-  useEffect(() => {
+   const migrateMessages =  async (previousUserId: string, currentUserId: string) => {
+    const response = await fetch('/api/migrate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fromUser: previousUserId,
+        toUser: currentUserId
+      }),
+    })
+    if (!response.ok) 
+      toast.error('There was an error migrating messages, but you may still be able to chat. Logout to see old guest account messages or reload to attempt again.', {
+        dismissible: true,
+      })
+    return response
+  }
+  useEffect( () => {
     const messagesRef = ref(database, `chats/${currentUserId}/messages`)
-    
     // If user ID changed, migrate messages from previous ID
     if (previousUserIdRef.current !== currentUserId && previousUserIdRef.current === guestId) {
-      const previousMessagesRef = ref(database, `chats/${previousUserIdRef.current}/messages`)
-      onValue(previousMessagesRef, (snapshot) => {
-        const previousData = snapshot.val()
-        if (previousData) {
-          Object.values(previousData).forEach((message: any) => {
-            push(messagesRef, message)
-          })
-        }
-      }, { onlyOnce: true })
+      migrateMessages(previousUserIdRef.current, currentUserId);
     }
     
     const unsubscribe = onValue(messagesRef, (snapshot) => {

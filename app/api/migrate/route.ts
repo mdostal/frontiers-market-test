@@ -12,20 +12,14 @@ export async function POST(request: Request) {
     try {
         // Extract the data from the request
         const body = await request.json();
-        const prompt = body.prompt;
-        const user = body.user;
-
+        const fromUser = body.fromUser;
+        const toUser = body.toUser;
         const database = new Database();
-        
-        // we do not await this since we want it to happen while we continue
-        database.addMessage(user,prompt, false);
 
-        const modelResponse = await model.getResponse(prompt);
-
-        database.addMessage(user, modelResponse, true);
+        const result = await database.migrateMessages(fromUser, toUser);
         
-      return NextResponse.json({ message: 'Post created successfully', result: modelResponse }, { status: 201 });
+      return NextResponse.json({ message: 'Post created successfully', result  }, { status: 201 });
     } catch (error) {
-      return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
+      return NextResponse.json({ error: 'Failed to migrate messages.' }, { status: 500 });
     }
 }
