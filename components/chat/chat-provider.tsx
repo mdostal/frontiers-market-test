@@ -49,23 +49,36 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const sendMessage = async (text: string) => {
     if (!user) return
 
-    const messagesRef = ref(database, `chats/${user.id}/messages`)
-    await push(messagesRef, {
-      text,
-      sender: user.id,
-      timestamp: serverTimestamp(),
-      isAi: false,
+    console.log('sending message to gemini')
+    // const aiResponse = await fetch('/api/gemini', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     prompt: text,
+    //     user: user.id
+    //   }),
+    // })
+        const aiResponse = await fetch('/api/claude', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: text,
+        user: user.id
+      }),
     })
-
-    // Simulate AI response
-    setTimeout(async () => {
-      await push(messagesRef, {
-        text: "Thanks for your message! Our AI assistant will get back to you soon.",
-        sender: 'ai',
-        timestamp: serverTimestamp(),
-        isAi: true,
-      })
-    }, 1000)
+    // // Simulate AI response
+    // setTimeout(async () => {
+    //   await push(messagesRef, {
+    //     text: "Thanks for your message! Our AI assistant will get back to you soon.",
+    //     sender: 'ai',
+    //     timestamp: serverTimestamp(),
+    //     isAi: true,
+    //   })
+    // }, 1000)
   }
 
   const toggleChat = () => setIsOpen(prev => !prev)

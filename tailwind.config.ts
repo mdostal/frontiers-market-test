@@ -22,10 +22,6 @@ const config: Config = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        notification:{
-          background: 'rgb(16 24 40/var(--tw-bg-opacity))', 
-        },
-
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export function NavLinks() {
+  // TODO: Fix the buttons to only matter based on clerk
   return (
     <nav className="flex items-center gap-6">
       <Link href="/browse" className="text-sm font-medium hover:text-primary">
