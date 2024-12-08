@@ -23,7 +23,7 @@ export function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-96 h-[500px] bg-white rounded-lg shadow-xl flex flex-col">
+    <div className="fixed bottom-4 right-4 w-96 h-[500px] hover bg-white rounded-lg shadow-xl flex flex-col">
       <div className="flex items-center justify-between p-4 border-b">
         <h3 className="font-semibold">Chat Support</h3>
         {isSignedIn && (

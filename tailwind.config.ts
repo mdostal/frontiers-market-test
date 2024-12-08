@@ -23,6 +23,9 @@ const config: Config = {
         borderGreen:{
           DEFAULT: 'hsl(137, 100%, 26%)'
         },
+        livestockPocket: {
+          DEFAULT: 'hsl(30, 20%, 94%)'
+        },
         primary: {
           DEFAULT: 'hsl(220, 43%, 11%)',
           foreground: 'hsl(var(--primary-foreground))',
@@ -32,8 +35,7 @@ const config: Config = {
           foreground: 'hsl(var(--secondary-foreground))',
         },
         background: {
-          DEFAULT: 'hsl(var(--background))',
-          livestockPocket: 'hsl(30, 20%, 94%)'
+          DEFAULT: 'hsl(var(--background))'
         },
         foreground: 'hsl(var(--foreground))',
         card: {

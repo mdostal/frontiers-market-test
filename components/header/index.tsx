@@ -1,14 +1,12 @@
 "use client"
 
 import Link from 'next/link'
-import { NotificationBanner } from './notification-banner'
 import { NavLinks } from './nav-links'
 import Image from 'next/image'
 
 export function Header() {
   return (
     <>
-      <NotificationBanner />
       <header className="bg-[#FBFAFA] sticky top-0 z-10">
         <div className="container py-2 pt-4 sm:py-4  flex flex-row items-center md:items-end justify-between gap-16">
           <div className="max-md:hidden">

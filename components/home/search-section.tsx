@@ -34,38 +34,44 @@ export function SearchSection() {
   }
 
   return (
-    <section className="py-12 bg-white">
-      <div className="container">
-        <form onSubmit={handleSearch} className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <input
-                type="text"
-                placeholder="Search livestock..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
-            <Select value={selectedState} onValueChange={setSelectedState}>
-              <SelectTrigger className="w-full md:w-[200px]">
-                <SelectValue placeholder="Select state" />
-              </SelectTrigger>
-              <SelectContent>
-                {states.map((state) => (
-                  <SelectItem key={state} value={state}>
-                    {state}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button type="submit" className="bg-green-600 hover:bg-green-700">
-              <Search className="mr-2 h-4 w-4" />
-              Search
-            </Button>
-          </div>
-        </form>
+    <section className="container">
+      <p className="text-base text-secondary font-semibold uppercase">
+        Verified listings added daily
+      </p>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl leading-9 md:text-3xl md:leading-12 text-primary font-archia font-semibold">
+          Thousands of Cattle to Browse
+        </h2>
       </div>
+      <form onSubmit={handleSearch} className="lg:flex flex-col gap-3 justify-end">
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="What are you looking for?"
+            aria-label='What are you looking for?'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="flex-grow border border-lightGrey rounded-l-lg text-sm text-[#475467] p-3 w-full"
+          />
+
+          <Select value={selectedState} onValueChange={setSelectedState}>
+            <SelectTrigger className="max-md:hidden border border-lightGrey text-sm text-[#475467] h-12 p-3 w-1/4">
+              <SelectValue placeholder="Select state" />
+            </SelectTrigger>
+            <SelectContent>
+              {states.map((state) => (
+                <SelectItem key={state} value={state}>
+                  {state}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button type="submit" className="flex gap-3 items-center justify-center text-lg text-white bg-secondary p-3 h-12 rounded-r-lg leading-normal">
+            <Search className="mr-2 h-4 w-4" />
+            Search
+          </Button>
+        </div>
+      </form>
     </section>
   )
 }
