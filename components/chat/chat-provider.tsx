@@ -5,6 +5,7 @@ import { ref, onValue, push } from 'firebase/database'
 import { database } from '@/lib/firebase'
 import { getUserId } from '@/lib/utils/auth-utils'
 import { ChatWidget } from './chat-widget'
+import { toast } from "sonner"
 
 type Message = {
   id: string
@@ -63,16 +64,29 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   }, [currentUserId])
 
   const sendMessage = async (text: string) => {
-    await fetch('/api/prompt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        prompt: text,
-        user: currentUserId
-      }),
-    })
+    try {
+      const response =await fetch('/api/prompt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: text,
+          user: currentUserId
+        }),
+      })
+      if (!response.ok) {
+        toast.error('There was an error sending your message. Please try again later.', {
+          dismissible: true,
+        })
+
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error('There was an error reaching the server. Please try again later.',{
+        dismissible: true,
+      })
+    }
   }
 
   const toggleChat = () => setIsOpen(prev => !prev)
