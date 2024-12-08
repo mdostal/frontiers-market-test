@@ -12,11 +12,10 @@ export function NotificationBanner() {
   if (!isVisible) return null
 
   return (
-    // TODO: update notification banner colors
-    <section className="flex bg-primary py-3 sticky top-0 z-99999">
+    <section className="flex bg-primary py-3 sticky width-full top-0 z-99999">
       <div className="container flex flex-row justify-between text-sm lg:text-base xl:translate-x-4">
         <a href="/mobile-app" className="flex justify-between md:w-full">
-          <div className="flex justify-between md:w-full">
+          <div>
             <p className="hidden md:flex items-center gap-2 text-white">
               <Image
                 src="/images/flag.jpeg"
@@ -28,23 +27,30 @@ export function NotificationBanner() {
             </p>
           </div>
           <div className='flex gap-2 text-white items-center'>
-            <p className="md:hidden font-medium text-base">
+            <p className="hidden md:block">
               Available On
             </p>
             <Image src={'/images/apple-logo.svg'} alt="Apple Logo" width={20} height={20} />
+            <p className="md:hidden font-medium text-base">Test our cattle weight app.</p>
           </div>
         </a>
-        {/* // TODO: fix the button to remove as well */}
-        <button
-          // variant="ghost"
-          // size="icon"
-          // label="remove banner" 
-          onClick={() => setIsVisible(false)}
-          className="pr-4"
-        >
-          <X className="h-24 w-24" />
-        </button>
-      </div>
+        </div>
+        <span className='flex gap-2 pl-10 text-white float-left justify-end items-end'>
+          <Button
+            variant="thin"
+            size="tiny"
+            aria-label='remove banner'
+            onClick={() => setIsVisible(false)}
+            className='text-white float-right justify-end pr-4'>
+            <Image
+            src={'/images/x.svg'} 
+            alt="X" 
+            width={24} 
+            height={24} 
+            className="float-right justify-end"
+            />
+          </Button>
+        </span>
     </section>
   )
 }
