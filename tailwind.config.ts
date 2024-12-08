@@ -31,7 +31,10 @@ const config: Config = {
           DEFAULT: 'hsl(139, 80%, 34%)',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-        background: 'hsl(var(--background))',
+        background: {
+          DEFAULT: 'hsl(var(--background))',
+          livestockPocket: 'hsl(30, 20%, 94%)'
+        },
         foreground: 'hsl(var(--foreground))',
         card: {
           DEFAULT: 'hsl(var(--card))',
