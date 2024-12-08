@@ -7,7 +7,7 @@ import { getUserId } from '@/lib/utils/auth-utils'
 import { ChatWidget } from './chat-widget'
 import { toast } from "sonner"
 import { useAuthStore } from '@/lib/store/auth-store'
-import { NextResponse } from 'next/server'
+
 type Message = {
   id: string
   text: string

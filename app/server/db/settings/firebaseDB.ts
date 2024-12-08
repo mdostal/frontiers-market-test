@@ -1,8 +1,6 @@
-import { init } from "next/dist/compiled/webpack/webpack";
-
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./firebaseAdmin.json");
+var serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_JSON || "");
 
 class FirebaseDB {
     private connection: any;
