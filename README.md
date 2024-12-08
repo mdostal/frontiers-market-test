@@ -171,7 +171,7 @@ TODO:
 - [] send email to include:
  - [x] link to the site
  - [x] link to github
- - [] link to firebase project
+ - [x] link to firebase project
  - [o] link to clerk project -- this cannot be done on the free tier for this one
  - [x] comments on time spent with breakdown:
   - [x] cloning the site
