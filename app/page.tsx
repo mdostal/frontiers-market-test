@@ -13,14 +13,15 @@ export default function Home() {
       <SearchSection />
       <InfoGrid />
       <AboutSection />
-
-      <Image alt="Logo company" 
-      loading="lazy" 
-      width="104" 
-      height="56" 
-      decoding="async" data-nimg="1" className="self-center flex justify-center snap-center" 
-      src="/images/logo.svg" 
-      />
+      <div className='width-full items-center justify-center mx-auto'>
+        <Image alt="Logo company" 
+        loading="lazy" 
+        width="104" 
+        height="56" 
+        decoding="async" data-nimg="1" className="self-center flex justify-center snap-center" 
+        src="/images/logo.svg" 
+        />
+      </div>
       <AppPromo />
     </>
   )

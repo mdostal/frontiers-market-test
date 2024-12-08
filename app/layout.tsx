@@ -1,6 +1,5 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
-import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ChatProvider } from '@/components/chat/chat-provider'
 import { Header } from '@/components/header'
@@ -25,7 +24,6 @@ export default function RootLayout({
               <Header />
               <main>{children}</main>
               <Footer />
-              <Toaster />
             </ChatProvider>
             </AuthProvider>
           </ThemeProvider>
