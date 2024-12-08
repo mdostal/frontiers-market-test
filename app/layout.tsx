@@ -5,6 +5,7 @@ import { ChatProvider } from '@/components/chat/chat-provider'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { AuthProvider } from '@/components/providers/auth-provider'
+import { Toaster } from "@/components/ui/sonner"
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,6 +27,7 @@ export default function RootLayout({
               <Footer />
             </ChatProvider>
             </AuthProvider>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
