@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation';
+
 import {
   Select,
   SelectContent,
@@ -11,26 +13,17 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-const states = [
-  'All States', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-  'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-  'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
-  'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
-  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
-  'West Virginia', 'Wisconsin', 'Wyoming'
-]
+import { states } from '@/data/states'
 
 export function SearchSection() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedState, setSelectedState] = useState('All States')
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     // Handle search logic here
-    console.log('Searching:', { searchTerm, selectedState })
+    router.push(`https://frontiersmarket.com/cattle-for-sale?q=${searchTerm}&stateShort=${selectedState}`);
   }
 
   return (
@@ -60,15 +53,15 @@ export function SearchSection() {
             </SelectTrigger>
             <SelectContent>
               {states.map((state) => (
-                <SelectItem key={state} value={state}>
-                  {state}
+                <SelectItem key={state.name} value={state.shortText}>
+                  {state.name}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
-          <Button type="submit" className="flex gap-3 items-center justify-center text-lg text-white bg-secondary p-3 h-12 rounded-r-lg leading-normal">
-            <Search className="mr-2 h-4 w-4" />
+          <Button type="submit" onClick={handleSearch} className="flex gap-3 items-center justify-center text-lg text-white bg-secondary p-3 h-12 rounded-r-lg leading-normal">
             Search
+            <Search className="mr-2 h-4 w-4" />
           </Button>
         </div>
       </form>

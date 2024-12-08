@@ -14,22 +14,20 @@ export function AppPromo() {
             </h2>
             <a href="https://apps.apple.com/us/app/livestock-in-your-pocket/id1603067687" 
             className="flex items-center justify-center gap-2 mt-5 md:self-start font-bold text-base md:text-lg leading-7 bg-primary text-white rounded-lg px-4 py-3 md:px-9 md:py-4">
-              <Button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 px-4 py-2 bg-black hover:bg-gray-800 text-white ">
-                Download App
-                <Image className='text-white'
-                  src="/images/download.svg"
-                  alt="Apple Logo"
-                  width={20}
-                  height={20}
-                  />
-              </Button>
+              Download App
+              <Image className='text-white'
+                src="/images/download.svg"
+                alt="Dowload Logo"
+                width={20}
+                height={20}
+                />
             </a>
           </div>
           <div className="rounded-b-lg flex items-center justify-center md:justify-start flex-row gap-2 bg-tertiary md:bg-transparent">
               <Image src={"/images/ranchers.webp"}
                 alt="Ranchers"
-                width={50}
-                height={24}
+                width={85}
+                height={40}
                 className="hidden lg:block"
               />
               <p className="flex items-center gap-1 text-grey text-base xlg:text-[20px] leading-8 font-semibold py-3"> 
