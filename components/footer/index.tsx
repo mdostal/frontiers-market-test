@@ -3,81 +3,30 @@ import { SocialLinks } from './social-links'
 
 export function Footer() {
   return (
-    <footer className="border-t bg-background">
-      <div className="container py-8 md:py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <h3 className="text-lg font-semibold">Let's keep in touch!</h3>
-            <div className="mt-4 space-y-2">
-              <p>info@frontiersmarket.com</p>
-              <p>+1 512-387-4314</p>
-              <div className="mt-4">
-                <SocialLinks />
-              </div>
-            </div>
+    <footer className="container flex flex-col gap-10 pt-16 bottom-0">
+      <section className="flex flex-col gap-8 md:flex-row">
+        <div className="flex flex-1 flex-col text-primary">
+            <p className="text-borderGreen font-semibold text-base leading-10 md:text-lg md:leading-10">Let's keep in touch!</p>
+            <a className='font-archia font-semibold text-xl md:text-2xl leading-8 md:leading-9'
+              href="mailto:info@frontiersmarket.com">
+              info@frontiersmarket.com
+            </a>
+            <a className="font-archia font-semibold text-xl md:text-2xl leading-8 md:leading-9" 
+              href="tel:+1 512-387-4314">
+              +1 512-387-4314
+            </a>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold">Company</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/careers" className="text-muted-foreground hover:text-primary">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/press" className="text-muted-foreground hover:text-primary">
-                  Press
-                </Link>
-              </li>
-            </ul>
+          <SocialLinks />
+      </section>
+      <section className="flex flex-col gap-4 font-medium text-beigeGrey border-t border-lightGrey py-8 md:flex-row md:justify-between">
+        <div className="flex flex-row gap-4 text-sm">
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/privacy-policy">Privacy Policy</a>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold">Resources</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-primary">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/help" className="text-muted-foreground hover:text-primary">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Legal</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/privacy" className="text-muted-foreground hover:text-primary">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-muted-foreground hover:text-primary">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-8 border-t pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Frontiers Market. All Rights Reserved.
+          <p className="text-xs md:text-sm">
+            Copyright © Frontiers Market 2024. All Rights Reserved.
           </p>
-        </div>
-      </div>
+        </section>
     </footer>
   )
 }

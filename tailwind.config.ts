@@ -20,6 +20,9 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        borderGreen:{
+          DEFAULT: 'hsl(137, 100%, 26%)'
+        },
         primary: {
           DEFAULT: 'hsl(220, 43%, 11%)',
           foreground: 'hsl(var(--primary-foreground))',
