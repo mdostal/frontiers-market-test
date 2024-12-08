@@ -153,3 +153,35 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Lucide Icons](https://lucide.dev/)
+
+
+TODO:
+- [] Add rules for the database to lock it down
+- [] Add a sonner if we get an error on chat
+- [] chat merges chats, doesn't take into account the fact that a logged in user logging out should not be able to see the chat history
+- [] Clean up the last top sections for
+ - [] search
+ - [] info grid
+ - [] hero
+- [] send email to include:
+ - [] link to the site
+ - [] link to github
+ - [] link to firebase project
+ - [] link to clerk project
+ - [] comments on time spent with breakdown:
+  - [] cloning the site
+  - [] css and design
+  - [] chatbot
+  - [] templating
+  - [] setup of accounts and binding
+  - [] setup of overall project
+  - [] deployment and hosting
+- [] comments on what was left out
+ - [] pixel perfect design
+ - [] responsive across all sizes
+ - [] mobile friendly
+ - [] added accessibility and a couple small animations
+- [] speed report
+- [] add a link to the speed page
+- look at the overall site and see if top level css aligns better
+- fix any other css issues
