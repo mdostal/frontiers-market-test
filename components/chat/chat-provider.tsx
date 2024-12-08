@@ -7,7 +7,7 @@ import { getUserId } from '@/lib/utils/auth-utils'
 import { ChatWidget } from './chat-widget'
 import { toast } from "sonner"
 import { useAuthStore } from '@/lib/store/auth-store'
-
+import { NextResponse } from 'next/server'
 type Message = {
   id: string
   text: string
@@ -22,6 +22,7 @@ type ChatContextType = {
   isOpen: boolean
   toggleChat: () => void
 }
+import { migrateMessages, sendMessage } from '@/lib/chat'
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
@@ -32,28 +33,44 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const currentUserId = getUserId()
   const previousUserIdRef = useRef<string>(currentUserId)
 
-   const migrateMessages =  async (previousUserId: string, currentUserId: string) => {
-    const response = await fetch('/api/migrate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        fromUser: previousUserId,
-        toUser: currentUserId
-      }),
-    })
-    if (!response.ok) 
-      toast.error('There was an error migrating messages, but you may still be able to chat. Logout to see old guest account messages or reload to attempt again.', {
+  const checkSendMessageReturn = async(text: string) => {
+    try {
+      const response = await sendMessage(text, currentUserId);
+      if (!response.ok) {
+        toast.error('There was an error sending your message. Please try again later.', {
+          dismissible: true,
+        })
+
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error('There was an error reaching the server. Please try again later.',{
         dismissible: true,
       })
-    return response
+    }
   }
+
+  const checkMigrateReturn =  async (previousUserId: string) => {
+    try{
+      const response = await migrateMessages(previousUserId, currentUserId);
+      if (!response.ok) 
+        toast.error('There was an error migrating messages, but you may still be able to chat. Logout to see old guest account messages or reload to attempt again.', {
+          dismissible: true,
+        })
+      return response
+    } catch (error) {
+      console.log(error)
+      toast.error('There was a problem calling to the server', {
+        dismissible: true,
+      })
+    }
+  }
+   
   useEffect( () => {
     const messagesRef = ref(database, `chats/${currentUserId}/messages`)
     // If user ID changed, migrate messages from previous ID
     if (previousUserIdRef.current !== currentUserId && previousUserIdRef.current === guestId) {
-      migrateMessages(previousUserIdRef.current, currentUserId);
+      checkMigrateReturn(previousUserIdRef.current);
     }
     
     const unsubscribe = onValue(messagesRef, (snapshot) => {
@@ -73,36 +90,10 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     return () => unsubscribe()
   }, [currentUserId])
 
-  const sendMessage = async (text: string) => {
-    try {
-      const response =await fetch('/api/prompt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prompt: text,
-          user: currentUserId
-        }),
-      })
-      if (!response.ok) {
-        toast.error('There was an error sending your message. Please try again later.', {
-          dismissible: true,
-        })
-
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('There was an error reaching the server. Please try again later.',{
-        dismissible: true,
-      })
-    }
-  }
-
   const toggleChat = () => setIsOpen(prev => !prev)
 
   return (
-    <ChatContext.Provider value={{ messages, sendMessage, isOpen, toggleChat }}>
+    <ChatContext.Provider value={{ messages, sendMessage: checkSendMessageReturn, isOpen, toggleChat }}>
       {children}
       <ChatWidget />
     </ChatContext.Provider>
