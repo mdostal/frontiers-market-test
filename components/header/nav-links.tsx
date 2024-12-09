@@ -9,7 +9,7 @@ export function NavLinks() {
   return (
     <div className="flex flex-1 flex-row items-center justify-end gap-3">
       <div className="max-md:hidden flex flex-1">
-        <Link href="https://frontiersmarket.com/cattle-for-sale" className="bg-white border-[#E4E7EC] border-[1px] rounded-md py-2 px-3 font-medium text-sm sm:text-base text-[#1D2939]">
+        <Link className="font-semibold text-sm sm:text-base w-full" href="https://frontiersmarket.com/cattle-for-sale" className="bg-white border-[#E4E7EC] border-[1px] rounded-md py-2 px-3 font-medium text-sm sm:text-base text-[#1D2939]">
           Browse livestock
         </Link>
       </div>

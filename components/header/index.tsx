@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { NavLinks } from './nav-links'
 import Image from 'next/image'
-import { MobileLinks } from './mobile-links'
+import { MobileMenu } from '../mobile-menu/index'
 
 export function Header() {
   return (
@@ -21,7 +21,7 @@ export function Header() {
                   className="" />
               </Link>
             </div>
-            <MobileLinks />
+            <MobileMenu />
             <NavLinks />
           </div>
         </nav>
