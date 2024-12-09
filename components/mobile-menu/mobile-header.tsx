@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useUser } from '@clerk/nextjs';
+import { SignIn, SignInButton, useUser } from '@clerk/nextjs';
 
 export function MobileHeader() {
     const { user } = useUser();
@@ -27,9 +27,12 @@ export function MobileHeader() {
                 height={24}
                 alt="Logo" />
             <div className="flex flex-col float-right justify end">
-                <a className="font-semibold text-sm sm:text-base rounded-md py-2 px-3 text-primary border border-lightGrey" href="/login">
-                Log in
-                </a>
+                <SignInButton>
+                    <a className="font-semibold text-sm sm:text-base rounded-md py-2 px-3 text-primary border border-lightGrey" href="/login">
+                        Log in
+                    </a>
+                </SignInButton>
+
             </div>
         </div>
         )}
