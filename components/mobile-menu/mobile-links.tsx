@@ -7,12 +7,12 @@ export function MobileLinks() {
         <Link href="/" className="font-semibold text-sm sm:text-base w-full">
             Homepage
         </Link>
-        <Link href="https://frontiersmarket.com/browse" className="font-semibold text-sm sm:text-base w-full">
+        <a href="https://frontiersmarket.com/browse" className="font-semibold text-sm sm:text-base w-full">
             Browse Livestock
-        </Link>
-        <Link href="https://frontiersmarket.com/dashboard/offer/add" className="font-semibold text-sm sm:text-base w-full">
+        </a>
+        <a href="https://frontiersmarket.com/dashboard/offer/add" className="font-semibold text-sm sm:text-base w-full">
             Add Listing
-        </Link>
+        </a>
     </div>
     )
 }
