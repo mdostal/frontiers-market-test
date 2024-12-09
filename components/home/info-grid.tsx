@@ -39,7 +39,7 @@ export function InfoGrid() {
             width={"90%"}
             // height={648}
             alt="map"
-            className="object-contain sm:object-cover max-md:object-bottom object-top max-md:translate-y-9 md:scale-x-110"
+            className="object-contain sm:object-cover max-md:object-bottom object-top max-md:translate-y-9 md:scale-x-110 z-0"
           />
         </picture>
       </div>
