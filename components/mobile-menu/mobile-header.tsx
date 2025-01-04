@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { SignIn, SignInButton, useUser } from '@clerk/nextjs';
+import { SignInButton, useUser } from '@clerk/nextjs';
 
 export function MobileHeader() {
     const { user } = useUser();
@@ -32,7 +32,6 @@ export function MobileHeader() {
                         Log in
                     </a>
                 </SignInButton>
-
             </div>
         </div>
         )}
